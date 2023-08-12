@@ -1,0 +1,558 @@
+version: 2
+
+sources:
+  - name: tpcds
+    description: TPC-DS models any industry that must manage, sell and distribute products.
+    database: dbt-learning-project-374406
+    schema: raw_tpcds_data
+    meta:
+      data_source: "TPC-DS Benchmark"
+      data_quality: "bronze"
+    tables:
+      - name: customer
+        description: Each row in this dimension table represents a customer.
+        meta:
+          data_quality: "bronze"
+        columns:
+          - name: c_customer_sk
+            description: primary key
+            tests:
+              - unique
+              - not_null
+          - name: c_customer_id
+            description: business key
+            tests:
+              - not_null
+          - name: c_preferred_cust_flag
+            tests:
+              - accepted_values:
+                  values: ["Y", "N"]
+          - name: c_current_cdemo_sk
+          - name: c_current_hdemo_sk
+          - name: c_current_addr_sk
+          - name: c_first_shipto_date_sk
+          - name: c_first_sales_date_sk
+          - name: c_salutation
+          - name: c_first_name
+          - name: c_last_name
+          - name: c_birth_day
+          - name: c_birth_month
+          - name: c_birth_year
+          - name: c_birth_country
+          - name: c_login
+          - name: c_email_address
+          - name: c_last_review_date
+
+      - name: call_center
+        columns:
+          - name: cc_call_center_sk
+          - name: cc_call_center_id
+          - name: cc_rec_start_date
+          - name: cc_rec_end_date
+          - name: cc_closed_date_sk
+          - name: cc_open_date_sk
+          - name: cc_name
+          - name: cc_class
+          - name: cc_employees
+          - name: cc_sq_ft
+          - name: cc_hours
+          - name: cc_manager
+          - name: cc_mkt_id
+          - name: cc_mkt_class
+          - name: cc_mkt_desc
+          - name: cc_market_manager
+          - name: cc_division
+          - name: cc_division_name
+          - name: cc_company
+          - name: cc_company_name
+          - name: cc_street_number
+          - name: cc_street_name
+          - name: cc_street_type
+          - name: cc_suite_number
+          - name: cc_city
+          - name: cc_county
+          - name: cc_state
+          - name: cc_zip
+          - name: cc_country
+          - name: cc_gmt_offset
+          - name: cc_tax_percentage
+
+      - name: catalog_page
+        columns:
+          - name: cp_catalog_page_sk
+          - name: cp_catalog_page_id
+          - name: cp_start_date_sk
+          - name: cp_end_date_sk
+          - name: cp_department
+          - name: cp_catalog_number
+          - name: cp_catalog_page_number
+          - name: cp_description
+          - name: cp_type
+
+      - name: catalog_returns
+        columns:
+          - name: cr_returned_date_sk
+          - name: cr_returned_time_sk
+          - name: cr_item_sk
+          - name: cr_refunded_customer_sk
+          - name: cr_refunded_cdemo_sk
+          - name: cr_refunded_hdemo_sk
+          - name: cr_refunded_addr_sk
+          - name: cr_returning_customer_sk
+          - name: cr_returning_cdemo_sk
+          - name: cr_returning_hdemo_sk
+          - name: cr_returning_addr_sk
+          - name: cr_call_center_sk
+          - name: cr_catalog_page_sk
+          - name: cr_ship_mode_sk
+          - name: cr_warehouse_sk
+          - name: cr_reason_sk
+          - name: cr_order_number
+          - name: cr_return_quantity
+          - name: cr_return_amount
+          - name: cr_return_tax
+          - name: cr_return_amt_inc_tax
+          - name: cr_fee
+          - name: cr_return_ship_cost
+          - name: cr_refunded_cash
+          - name: cr_reversed_charge
+          - name: cr_store_credit
+          - name: cr_net_loss
+
+      - name: catalog_sales
+        columns:
+          - name: cs_sold_date_sk
+          - name: cs_sold_time_sk
+          - name: cs_ship_date_sk
+          - name: cs_bill_customer_sk
+          - name: cs_bill_cdemo_sk
+          - name: cs_bill_hdemo_sk
+          - name: cs_bill_addr_sk
+          - name: cs_ship_customer_sk
+          - name: cs_ship_cdemo_sk
+          - name: cs_ship_hdemo_sk
+          - name: cs_ship_addr_sk
+          - name: cs_call_center_sk
+          - name: cs_catalog_page_sk
+          - name: cs_ship_mode_sk
+          - name: cs_warehouse_sk
+          - name: cs_item_sk
+          - name: cs_promo_sk
+          - name: cs_order_number
+          - name: cs_quantity
+          - name: cs_wholesale_cost
+          - name: cs_list_price
+          - name: cs_sales_price
+          - name: cs_ext_discount_amt
+          - name: cs_ext_sales_price
+          - name: cs_ext_wholesale_cost
+          - name: cs_ext_list_price
+          - name: cs_ext_tax
+          - name: cs_coupon_amt
+          - name: cs_ext_ship_cost
+          - name: cs_net_paid
+          - name: cs_net_paid_inc_tax
+          - name: cs_net_paid_inc_ship
+          - name: cs_net_paid_inc_ship_tax
+          - name: cs_net_profit
+
+      - name: customer_address
+        columns:
+          - name: ca_address_sk
+          - name: ca_address_id
+          - name: ca_street_number
+          - name: ca_street_name
+          - name: ca_street_type
+          - name: ca_suite_number
+          - name: ca_city
+          - name: ca_county
+          - name: ca_state
+          - name: ca_zip
+          - name: ca_country
+          - name: ca_gmt_offset
+          - name: ca_location_type
+
+      - name: customer_demographics
+        columns:
+          - name: cd_demo_sk
+          - name: cd_gender
+          - name: cd_marital_status
+          - name: cd_education_status
+          - name: cd_purchase_estimate
+          - name: cd_credit_rating
+          - name: cd_dep_count
+          - name: cd_dep_employed_count
+          - name: cd_dep_college_count
+
+      - name: date_dim
+        columns:
+          - name: d_date_sk
+          - name: d_date_id
+          - name: d_date
+          - name: d_month_seq
+          - name: d_week_seq
+          - name: d_quarter_seq
+          - name: d_year
+          - name: d_dow
+          - name: d_moy
+          - name: d_dom
+          - name: d_qoy
+          - name: d_fy_year
+          - name: d_fy_quarter_seq
+          - name: d_fy_week_seq
+          - name: d_day_name
+          - name: d_quarter_name
+          - name: d_holiday
+          - name: d_weekend
+          - name: d_following_holiday
+          - name: d_first_dom
+          - name: d_last_dom
+          - name: d_same_day_ly
+          - name: d_same_day_lq
+          - name: d_current_day
+          - name: d_current_week
+          - name: d_current_month
+          - name: d_current_quarter
+          - name: d_current_year
+
+      - name: household_demographics
+        columns:
+          - name: hd_demo_sk
+          - name: hd_income_band_sk
+          - name: hd_buy_potential
+          - name: hd_dep_count
+          - name: hd_vehicle_count
+
+      - name: income_band
+        columns:
+          - name: ib_income_band_sk
+          - name: ib_lower_bound
+          - name: ib_upper_bound
+
+      - name: inventory
+        columns:
+          - name: inv_date_sk
+          - name: inv_item_sk
+          - name: inv_warehouse_sk
+          - name: inv_quantity_on_hand
+
+      - name: item
+        columns:
+          - name: i_item_sk
+          - name: i_item_id
+          - name: i_rec_start_date
+          - name: i_rec_end_date
+          - name: i_item_desc
+          - name: i_current_price
+          - name: i_wholesale_cost
+          - name: i_brand_id
+          - name: i_brand
+          - name: i_class_id
+          - name: i_class
+          - name: i_category_id
+          - name: i_category
+          - name: i_manufact_id
+          - name: i_manufact
+          - name: i_size
+          - name: i_formulation
+          - name: i_color
+          - name: i_units
+          - name: i_container
+          - name: i_manager_id
+          - name: i_product_name
+
+      - name: promotion
+        columns:
+          - name: p_promo_sk
+          - name: p_promo_id
+          - name: p_start_date_sk
+          - name: p_end_date_sk
+          - name: p_item_sk
+          - name: p_cost
+          - name: p_response_target
+          - name: p_promo_name
+          - name: p_channel_dmail
+          - name: p_channel_email
+          - name: p_channel_catalog
+          - name: p_channel_tv
+          - name: p_channel_radio
+          - name: p_channel_press
+          - name: p_channel_event
+          - name: p_channel_demo
+          - name: p_channel_details
+          - name: p_purpose
+          - name: p_discount_active
+
+      - name: reason
+        columns:
+          - name: r_reason_sk
+          - name: r_reason_id
+          - name: r_reason_desc
+
+      - name: ship_mode
+        columns:
+          - name: sm_ship_mode_sk
+          - name: sm_ship_mode_id
+          - name: sm_type
+          - name: sm_code
+          - name: sm_carrier
+          - name: sm_contract
+
+      - name: store
+        columns:
+          - name: s_store_sk
+          - name: s_store_id
+          - name: s_rec_start_date
+          - name: s_rec_end_date
+          - name: s_closed_date_sk
+          - name: s_store_name
+          - name: s_number_employees
+          - name: s_floor_space
+          - name: s_hours
+          - name: s_manager
+          - name: s_market_id
+          - name: s_geography_class
+          - name: s_market_desc
+          - name: s_market_manager
+          - name: s_division_id
+          - name: s_division_name
+          - name: s_company_id
+          - name: s_company_name
+          - name: s_street_number
+          - name: s_street_name
+          - name: s_street_type
+          - name: s_suite_number
+          - name: s_city
+          - name: s_county
+          - name: s_state
+          - name: s_zip
+          - name: s_country
+          - name: s_gmt_offset
+          - name: s_tax_precentage
+
+      - name: store_returns
+        columns:
+          - name: sr_returned_date_sk
+          - name: sr_return_time_sk
+          - name: sr_item_sk
+          - name: sr_customer_sk
+          - name: sr_cdemo_sk
+          - name: sr_hdemo_sk
+          - name: sr_addr_sk
+          - name: sr_store_sk
+          - name: sr_reason_sk
+          - name: sr_ticket_number
+          - name: sr_return_quantity
+          - name: sr_return_amt
+          - name: sr_return_tax
+          - name: sr_return_amt_inc_tax
+          - name: sr_fee
+          - name: sr_return_ship_cost
+          - name: sr_refunded_cash
+          - name: sr_reversed_charge
+          - name: sr_store_credit
+          - name: sr_net_loss
+
+      - name: store_sales
+        columns:
+          - name: ss_sold_date_sk
+          - name: ss_sold_time_sk
+          - name: ss_item_sk
+          - name: ss_customer_sk
+          - name: ss_cdemo_sk
+          - name: ss_hdemo_sk
+          - name: ss_addr_sk
+          - name: ss_store_sk
+          - name: ss_promo_sk
+          - name: ss_ticket_number
+          - name: ss_quantity
+          - name: ss_wholesale_cost
+          - name: ss_list_price
+          - name: ss_sales_price
+          - name: ss_ext_discount_amt
+          - name: ss_ext_sales_price
+          - name: ss_ext_wholesale_cost
+          - name: ss_ext_list_price
+          - name: ss_ext_tax
+          - name: ss_coupon_amt
+          - name: ss_net_paid
+          - name: ss_net_paid_inc_tax
+          - name: ss_net_profit
+
+      - name: time_dim
+        columns:
+          - name: t_time_sk
+          - name: t_time_id
+          - name: t_time
+          - name: t_hour
+          - name: t_minute
+          - name: t_second
+          - name: t_am_pm
+          - name: t_shift
+          - name: t_sub_shift
+          - name: t_meal_time
+
+      - name: warehouse
+        columns:
+          - name: w_warehouse_sk
+          - name: w_warehouse_id
+          - name: w_warehouse_name
+          - name: w_warehouse_sq_ft
+          - name: w_street_number
+          - name: w_street_name
+          - name: w_street_type
+          - name: w_suite_number
+          - name: w_city
+          - name: w_county
+          - name: w_state
+          - name: w_zip
+          - name: w_country
+          - name: w_gmt_offset
+
+      - name: web_page
+        columns:
+          - name: wp_web_page_sk
+          - name: wp_web_page_id
+          - name: wp_rec_start_date
+          - name: wp_rec_end_date
+          - name: wp_creation_date_sk
+          - name: wp_access_date_sk
+          - name: wp_autogen_flag
+          - name: wp_customer_sk
+          - name: wp_url
+          - name: wp_type
+          - name: wp_char_count
+          - name: wp_link_count
+          - name: wp_image_count
+          - name: wp_max_ad_count
+
+      - name: web_returns
+        columns:
+          - name: wr_returned_date_sk
+          - name: wr_returned_time_sk
+          - name: wr_item_sk
+          - name: wr_refunded_customer_sk
+          - name: wr_refunded_cdemo_sk
+          - name: wr_refunded_hdemo_sk
+          - name: wr_refunded_addr_sk
+          - name: wr_returning_customer_sk
+          - name: wr_returning_cdemo_sk
+          - name: wr_returning_hdemo_sk
+          - name: wr_returning_addr_sk
+          - name: wr_web_page_sk
+          - name: wr_reason_sk
+          - name: wr_order_number
+          - name: wr_return_quantity
+          - name: wr_return_amt
+          - name: wr_return_tax
+          - name: wr_return_amt_inc_tax
+          - name: wr_fee
+          - name: wr_return_ship_cost
+          - name: wr_refunded_cash
+          - name: wr_reversed_charge
+          - name: wr_account_credit
+          - name: wr_net_loss
+
+      - name: web_sales
+        columns:
+          - name: ws_sold_date_sk
+          - name: ws_sold_time_sk
+          - name: ws_ship_date_sk
+          - name: ws_item_sk
+          - name: ws_bill_customer_sk
+          - name: ws_bill_cdemo_sk
+          - name: ws_bill_hdemo_sk
+          - name: ws_bill_addr_sk
+          - name: ws_ship_customer_sk
+          - name: ws_ship_cdemo_sk
+          - name: ws_ship_hdemo_sk
+          - name: ws_ship_addr_sk
+          - name: ws_web_page_sk
+          - name: ws_web_site_sk
+          - name: ws_ship_mode_sk
+          - name: ws_warehouse_sk
+          - name: ws_promo_sk
+          - name: ws_order_number
+          - name: ws_quantity
+          - name: ws_wholesale_cost
+          - name: ws_list_price
+          - name: ws_sales_price
+          - name: ws_ext_discount_amt
+          - name: ws_ext_sales_price
+          - name: ws_ext_wholesale_cost
+          - name: ws_ext_list_price
+          - name: ws_ext_tax
+          - name: ws_coupon_amt
+          - name: ws_ext_ship_cost
+          - name: ws_net_paid
+          - name: ws_net_paid_inc_tax
+          - name: ws_net_paid_inc_ship
+          - name: ws_net_paid_inc_ship_tax
+          - name: ws_net_profit
+
+      - name: web_site
+        columns:
+          - name: web_site_sk
+          - name: web_site_id
+          - name: web_rec_start_date
+          - name: web_rec_end_date
+          - name: web_name
+          - name: web_open_date_sk
+          - name: web_close_date_sk
+          - name: web_class
+          - name: web_manager
+          - name: web_mkt_id
+          - name: web_mkt_class
+          - name: web_mkt_desc
+          - name: web_market_manager
+          - name: web_company_id
+          - name: web_company_name
+          - name: web_street_number
+          - name: web_street_name
+          - name: web_street_type
+          - name: web_suite_number
+          - name: web_city
+          - name: web_county
+          - name: web_state
+          - name: web_zip
+          - name: web_country
+          - name: web_gmt_offset
+          - name: web_tax_percentage
+
+      - name: im-store-sales
+        columns:
+          - name: d_date
+          - name: t_time_sk
+          - name: t_time_id
+          - name: t_time
+          - name: t_hour
+          - name: t_minute
+          - name: t_second
+          - name: t_am_pm
+          - name: t_shift
+          - name: t_sub_shift
+          - name: t_meal_time
+          - name: ss_sold_date_sk
+          - name: ss_sold_time_sk
+          - name: ss_item_sk
+          - name: ss_customer_sk
+          - name: ss_cdemo_sk
+          - name: ss_hdemo_sk
+          - name: ss_addr_sk
+          - name: ss_store_sk
+          - name: ss_promo_sk
+          - name: ss_ticket_number
+          - name: ss_quantity
+          - name: ss_wholesale_cost
+          - name: ss_list_price
+          - name: ss_sales_price
+          - name: ss_ext_discount_amt
+          - name: ss_ext_sales_price
+          - name: ss_ext_wholesale_cost
+          - name: ss_ext_list_price
+          - name: ss_ext_tax
+          - name: ss_coupon_amt
+          - name: ss_net_paid
+          - name: ss_net_paid_inc_tax
+          - name: ss_net_profit
+          - name: _etl_loaded_at

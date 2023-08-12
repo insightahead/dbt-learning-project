@@ -1,0 +1,272 @@
+version: 2
+
+models:
+  - name: customers
+    description: "represents a customer in the tpcds dataset"
+    columns:
+      - name: c_customer_sk
+        description: ""
+
+      - name: c_customer_id
+        description: ""
+
+      - name: c_current_cdemo_sk
+        description: ""
+
+      - name: c_current_hdemo_sk
+        description: ""
+
+      - name: c_current_addr_sk
+        description: ""
+
+      - name: c_first_shipto_date_sk
+        description: ""
+
+      - name: c_first_sales_date_sk
+        description: ""
+
+      - name: c_salutation
+        description: ""
+
+      - name: c_first_name
+        description: ""
+
+      - name: c_last_name
+        description: ""
+
+      - name: c_full_name
+        description: ""
+
+      - name: c_is_preferred_customer
+        description: ""
+
+      - name: c_birthdate
+        description: ""
+
+      - name: cd_demo_sk
+        description: ""
+
+      - name: cd_gender
+        description: ""
+
+      - name: cd_marital_status
+        description: ""
+
+      - name: cd_education_status
+        description: ""
+
+      - name: cd_purchase_estimate
+        description: ""
+
+      - name: cd_credit_rating
+        description: ""
+
+      - name: cd_dep_count
+        description: ""
+
+      - name: cd_dep_employed_count
+        description: ""
+
+      - name: cd_dep_college_count
+        description: ""
+
+      - name: hd_demo_sk
+        description: ""
+
+      - name: hd_income_band_sk
+        description: ""
+
+      - name: hd_buy_potential
+        description: ""
+
+      - name: hd_dep_count
+        description: ""
+
+      - name: ib_income_band_sk
+        description: ""
+
+      - name: ib_lower_bound
+        description: ""
+
+      - name: ca_address_sk
+        description: ""
+
+      - name: ca_address_id
+        description: ""
+
+      - name: ca_street_number
+        description: ""
+
+      - name: ca_street_name
+        description: ""
+
+      - name: ca_street_type
+        description: ""
+
+      - name: ca_suite_number
+        description: ""
+
+      - name: ca_city
+        description: ""
+
+      - name: ca_county
+        description: ""
+
+      - name: ca_state
+        description: ""
+
+      - name: ca_zip
+        description: ""
+
+      - name: ca_country
+        description: ""
+
+      - name: ca_gmt_offset
+        description: ""
+
+      - name: ca_location_type
+        description: ""
+
+      - name: c_first_shipto_date
+        description: ""
+
+      - name: c_first_sales_date
+        description: ""
+
+  - name: sales
+    description: "contains all sales that happens through the channels: web, store and catalog."
+    config:
+      materialized: table
+    columns:
+      - name: sale_channel
+        description: ""
+
+      - name: sold_date_sk
+        description: ""
+
+      - name: sold_time_sk
+        description: ""
+
+      - name: ship_date_sk
+        description: ""
+
+      - name: customer_sk
+        description: ""
+
+      - name: bill_cdemo_sk
+        description: ""
+
+      - name: bill_hdemo_sk
+        description: ""
+
+      - name: bill_addr_sk
+        description: ""
+
+      - name: ship_customer_sk
+        description: ""
+
+      - name: ship_cdemo_sk
+        description: ""
+
+      - name: ship_hdemo_sk
+        description: ""
+
+      - name: ship_addr_sk
+        description: ""
+
+      - name: call_center_sk
+        description: ""
+
+      - name: catalog_page_sk
+        description: ""
+
+      - name: ship_mode_sk
+        description: ""
+
+      - name: warehouse_sk
+        description: ""
+
+      - name: item_sk
+        description: ""
+
+      - name: promo_sk
+        description: ""
+
+      - name: order_number
+        description: ""
+
+      - name: quantity
+        description: ""
+
+      - name: wholesale_cost
+        description: ""
+
+      - name: list_price
+        description: ""
+
+      - name: sales_price
+        description: ""
+
+      - name: ext_discount_amt
+        description: ""
+
+      - name: ext_sales_price
+        description: ""
+
+      - name: ext_wholesale_cost
+        description: ""
+
+      - name: ext_list_price
+        description: ""
+
+      - name: ext_tax
+        description: ""
+
+      - name: coupon_amt
+        description: ""
+
+      - name: ext_ship_cost
+        description: ""
+
+      - name: net_paid
+        description: ""
+
+      - name: net_paid_inc_tax
+        description: ""
+
+      - name: net_paid_inc_ship
+        description: ""
+
+      - name: net_paid_inc_ship_tax
+        description: ""
+
+      - name: net_profit
+        description: ""
+
+      - name: web_page_sk
+        description: ""
+
+      - name: web_site_sk
+        description: ""
+
+      - name: cdemo_sk
+        description: ""
+
+      - name: hdemo_sk
+        description: ""
+
+      - name: addr_sk
+        description: ""
+
+      - name: store_sk
+        description: ""
+
+      - name: ticket_number
+        description: ""
+
+
+
+  
+
+
+
