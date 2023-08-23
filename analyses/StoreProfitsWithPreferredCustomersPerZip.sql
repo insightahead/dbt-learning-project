@@ -11,9 +11,7 @@ preferred_customers_by_zipcode as (
         ,count(*) as cnt
     from {{ ref("customers") }} as customers
 
-    inner join {{ref("zip_codes")}} as zip_codes on zip_codes.zip = customers.ca_zip
-    where c_is_preferred_customer = true
-    
+    where c_is_preferred_customer = true and customers.ca_zip = '35709' 
     group by customers.ca_zip
 )
 select 
@@ -27,8 +25,6 @@ inner join
 inner join
     {{ ref("dim_store") }} as stores
     on stores.s_store_sk = store_sales.ss_store_sk
-
-where dates.d_qoy = 2 and dates.d_year = 1998
 
 group by stores.s_store_name,stores.s_zip
 order by stores.s_zip,stores.s_store_name
