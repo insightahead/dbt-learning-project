@@ -1,0 +1,11 @@
+version: 2
+
+analyses:
+  - name: StoreProfitsWithPreferredCustomersPerZip
+    docs:
+      show: true
+    description: |
+      This code provides a list of store names 
+      their zip codes, and their total net profits.
+      Additionally, it provides insights about a specific set of customers
+      namely the preferred customers who reside in certain zip code.
