@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: customer_total_return
+    description: "{{doc('customer_total_return')}}" 
+
+
+  - name: weekly_sales_year_over_year_comparison
+    description: "{{doc('weekly_sales_year_over_year_comparison')}}" 
