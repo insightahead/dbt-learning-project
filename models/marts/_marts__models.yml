@@ -3,6 +3,10 @@ version: 2
 models:
   - name: customers
     description: "represents a customer in the tpcds dataset"
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "DATE_DIFF(current_date(), c_birthdate, year) >=18"
+
     columns:
       - name: c_customer_sk
         description: ""
@@ -263,7 +267,87 @@ models:
 
       - name: ticket_number
         description: ""
+     
 
+  - name: store_sales
+    description: ""
+    columns:
+      - name: ss_sold_date_sk
+        description: ""
+
+      - name: ss_sold_time_sk
+        description: ""
+
+      - name: ss_item_sk
+        description: ""
+
+      - name: ss_customer_sk
+        description: ""
+
+      - name: ss_cdemo_sk
+        description: ""
+
+      - name: ss_hdemo_sk
+        description: ""
+
+      - name: ss_addr_sk
+        description: ""
+
+      - name: ss_store_sk
+        description: ""
+
+      - name: ss_promo_sk
+        description: ""
+
+      - name: ss_ticket_number
+        description: ""
+
+      - name: ss_quantity
+        description: ""
+
+      - name: ss_wholesale_cost
+        description: ""
+
+      - name: ss_list_price
+        description: ""
+
+      - name: ss_sales_price
+        description: ""
+
+      - name: ss_ext_discount_amt
+        description: ""
+
+      - name: ss_ext_sales_price
+        description: ""
+
+      - name: ss_ext_wholesale_cost
+        description: ""
+
+      - name: ss_ext_list_price
+        description: ""
+
+      - name: ss_ext_tax
+        description: ""
+
+      - name: ss_coupon_amt
+        description: ""
+
+      - name: ss_net_paid
+        description: ""
+
+      - name: ss_net_paid_inc_tax
+        description: ""
+
+      - name: ss_net_profit
+        description: ""
+
+      - name: sale_date
+        description: ""
+
+      - name: sale_timestamp
+        description: ""
+        tests:
+          - timestamp_is_past
 
 
   

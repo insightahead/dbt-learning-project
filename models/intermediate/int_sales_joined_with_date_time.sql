@@ -1,3 +1,5 @@
+{{config(materialized='ephemeral')}}
+
 with source as (
     select * from {{ ref('stg_tpcds__store_sales') }}
 ),

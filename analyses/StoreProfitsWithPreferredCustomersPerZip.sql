@@ -1,9 +1,4 @@
 
--- This code provides a list of store names, 
--- their zip codes, and their total net profits. 
--- Additionally, it provides insights about a specific set of customers, 
--- namely the preferred customers who reside in certain zip code. 
-
 with
 preferred_customers_by_zipcode as (
     select
@@ -11,7 +6,9 @@ preferred_customers_by_zipcode as (
         ,count(*) as cnt
     from {{ ref("customers") }} as customers
 
-    where c_is_preferred_customer = true and customers.ca_zip = '35709' 
+    inner join {{ref("zip_codes")}} as zip_codes on zip_codes.zip = customers.ca_zip
+    where c_is_preferred_customer = true
+    
     group by customers.ca_zip
 )
 select 
@@ -25,6 +22,5 @@ inner join
 inner join
     {{ ref("dim_store") }} as stores
     on stores.s_store_sk = store_sales.ss_store_sk
-
 group by stores.s_store_name,stores.s_zip
 order by stores.s_zip,stores.s_store_name
