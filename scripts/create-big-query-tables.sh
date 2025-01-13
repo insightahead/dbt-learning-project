@@ -3,6 +3,8 @@ projectId=""
 datasetName=""
 bucketName=""
 
+gcloud config set project $projectId
+
 echo -e "Loading data into Table: {$projectId:$datasetName}.call_center"
 
 bq load --field_delimiter '|' --null_marker '' --replace --source_format=CSV --ignore_unknown_values  $projectId:$datasetName.call_center gs://$bucketName/call_center.dat \
